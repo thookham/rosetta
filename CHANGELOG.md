@@ -2,10 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2025.12-antigravity] - 2025-12-21
+## [2025.12-antigravity] - 2025-12-23
 ### Added
-- **WSL Build Helper**: Added `build_wsl.sh` to automate SCons dependency checks and flags.
-- **Docs**: Updated README to recommend WSL/SCons over MSVC.
+- **WSL Build Helper**: `build_wsl.sh` automates dependency checks and robustly handles git submodule updates.
+- **Robustness**: Implemented auto-fallback to single-threaded git updates in `update_submodules.sh` to prevent WSL/NTFS locking errors.
+
+### Fixed
+- **Build System**: Fixed `scons.py` wrapper, converted CRLF line endings, and patched `SConscript` to use absolute paths.
 
 ## [Unreleased] - Antigravity Hydration
 

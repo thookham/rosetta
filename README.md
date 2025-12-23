@@ -22,13 +22,17 @@
 
 ### 2. Full Build (Linux/WSL)
 
-```bash
-# Install dependencies
-sudo apt-get install scons zlib1g-dev
+We provide a robust helper script that handles dependencies and common WSL git locking issues automatically:
 
-# Build (Release mode)
-./scons.py -j8 mode=release bin
+```bash
+# Run the robust build assistant
+./build_wsl.sh
 ```
+
+This script will:
+1.  Check/Install system dependencies (`build-essential`, `zlib1g-dev`, `python3`).
+2.  Update submodules (with auto-fallback to serial mode if WSL file locking occurs).
+3.  Configure and run SCons for a Release build.
 
 ## 🧬 Features
 

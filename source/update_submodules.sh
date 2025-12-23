@@ -32,12 +32,17 @@ git submodule update --init -- source/external/c-cmaes/c-cmaes
 git submodule update --init -- source/external/gemmi_repo
 
 # This should update all the submodules under the boost_submod directory
-# On some systems Git/GitHub apparently throttles things. 
-# The until loop is there to make sure this command eventually finishes.
-until git submodule update --recursive --init -- source/external/boost_submod/; do
-    echo ">>>>>>>>> Boost submodule update did not complete successfully. Retrying. <<<<<<<<<" | tee >(cat >&2) # Also send to stderr, for test server purposes
-    sleep 10
-done
+# On some systems Git/GitHub apparently throttles things, and on WSL/NTFS parallel updates can cause file locking errors.
+# We try parallel first for speed, then fall back to single-threaded for stability.
+
+if ! git submodule update --recursive --init -- source/external/boost_submod/; then
+    echo ">>>>>>>>> Boost submodule update (parallel) failed. Retrying with --jobs 1 (robust mode) to avoid locking errors. <<<<<<<<<" | tee >(cat >&2)
+    
+    until git submodule update --recursive --init --jobs 1 -- source/external/boost_submod/; do
+        echo ">>>>>>>>> Boost submodule update (serial) did not complete successfully. Retrying. <<<<<<<<<" | tee >(cat >&2)
+        sleep 10
+    done
+fi
 
 # Update submodules which are extras conditional
 

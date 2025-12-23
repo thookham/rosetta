@@ -29,19 +29,24 @@ if not GetOption("help"):
         print("Skipping versioning script since --nover option was used. (Hopefully src/core/svn_version.cc is already up-to-date.)")
     else:
         import version
-        version.main(['./version.py'])
+        # Use absolute path for version.py
+        script_dir = Dir('.').abspath
+        version.main([os.path.join(script_dir, 'version.py')])
 
     # Update options:
-    subprocess.check_call(["./update_options.sh"])
+    script_dir = Dir('.').abspath
+    subprocess.check_call([os.path.join(script_dir, "update_options.sh")])
 
     # Decide whether to update submodules:
     if GetOption("nover"):
         print("Skipping submodule update script since --nover option was used.  (Hopefully all submodules that are needed for compilation are up-to-date.)")
     else:
-        subprocess.check_call(["./update_submodules.sh"] + str(build.options.extras).split(','))
+        script_dir = Dir('.').abspath
+        subprocess.check_call([os.path.join(script_dir, "update_submodules.sh")] + str(build.options.extras).split(','))
 
     # Update residue type enum files:
-    subprocess.check_call(["./update_ResidueType_enum_files.sh"])
+    script_dir = Dir('.').abspath
+    subprocess.check_call([os.path.join(script_dir, "update_ResidueType_enum_files.sh")])
 
 for kind in build.options.cat:
     for project in build.projects[kind]:
