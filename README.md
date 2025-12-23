@@ -18,7 +18,7 @@
 ### 1. Build Recommendation (Windows)
 
 > [!TIP]
-> **Use WSL**: Rosetta's build system (`SCons`) is highly optimized for Linux environments. For the smoothest experience on Windows, we **strongly recommend** using **WSL (Ubuntu)**.
+> **Use WSL (Strongly Recommended)**: Rosetta uses `SCons` and a complex C++ toolchain (g++/clang). While technically possible on Windows with MSVC, it is notoriously difficult to configure. WSL provides the native Linux build environment it expects.
 
 ### 2. Verification (Simulated Protocol)
 
