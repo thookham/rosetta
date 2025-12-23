@@ -9,7 +9,7 @@
 
 > [!NOTE]
 > **Antigravity Hydrated Fork**
-> This repository is a verified hydration of the core Rosetta framework. To facilitate rapid development on Windows without the 2+ hour compilation time, we have included architectural mocks (`SCAFFOLD/`) that verify the core Factory and Mover patterns.
+> This repository is a verified hydration of the core Rosetta framework.
 
 ---
 
@@ -18,21 +18,9 @@
 ### 1. Build Recommendation (Windows)
 
 > [!TIP]
-> **Use WSL (Strongly Recommended)**: Rosetta uses `SCons` and a complex C++ toolchain (g++/clang). While technically possible on Windows with MSVC, it is notoriously difficult to configure. WSL provides the native Linux build environment it expects.
+> **Use WSL**: Rosetta's build system (`SCons`) is highly optimized for Linux environments. For the smoothest experience on Windows, we **strongly recommend** using **WSL (Ubuntu)**.
 
-### 2. Verification (Simulated Protocol)
-
-Testing changes to the central `MoverFactory` usually requires a full re-link. We provide a lightweight verification tool:
-
-```bash
-# Verify Protocol Factory Pattern
-g++ SCAFFOLD/experiments/protocol_mock.cpp -o protocol_check
-./protocol_check
-```
-
-This mock compiles in seconds and validates that your new protocol classes correctly register with the central factory system.
-
-### 3. Full Build (Linux/WSL)
+### 2. Full Build (Linux/WSL)
 
 ```bash
 # Install dependencies
