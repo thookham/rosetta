@@ -7,7 +7,14 @@ Join the community solving the hardest problems in protein science.
 ### 1. The Build Challenge
 
 Rosetta is a massive C++ codebase. Compiling it fully can take hours.
-**Solution**: Use our **Antigravity Protocol Mock** for architectural development.
+
+**Build Helper (WSL/Linux)**:
+Use our robust build script to handle dependencies and git locking issues automatically:
+```bash
+./build_wsl.sh
+```
+
+**Alternative**: Use our **Antigravity Protocol Mock** for architectural development without a full build.
 
 ### 2. Antigravity Verification
 
