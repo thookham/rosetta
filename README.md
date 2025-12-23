@@ -11,7 +11,7 @@ Rosetta Code
 
 While the Rosetta source code is published on GitHub, it is not "Open Source" (according to the OSI definition). Most notably, use for commercial purposes requires purchase of a separate license. See LICENSE.md for further information.
 
-The main GitHub repository on https://github.com/RosettaCommons/rosetta integrates all the Rosetta-associated code base.
+The main GitHub repository on <https://github.com/RosettaCommons/rosetta> integrates all the Rosetta-associated code base.
 It should be noted that many parts of Rosetta are structured as separate GitHub repositories, which the main repository conveniently presents as submodules.
 A significant number are external software packages that Rosetta is redistributing, which helps synchronize development to exact versions of those external softwares across software distributions
 and thus support users and developers in their communication.
@@ -23,7 +23,9 @@ The retrieval of external source trees is independent from the software that may
 ``` sh
 git clone https://github.com/RosettaCommons/rosetta
 ```
+
 and change to that directory
+
 ``` sh
 cd rosetta
 ```
@@ -31,10 +33,10 @@ cd rosetta
 Getting Started Using Rosetta
 =============================
 
-Start here: https://www.rosettacommons.org/docs/latest/getting_started/Getting-Started
+Start here: <https://www.rosettacommons.org/docs/latest/getting_started/Getting-Started>
 
 The fastest way to address your scientific modeling challenge at hand may be with the official Docker images.
-Accessible from the official Docker hub at https://hub.docker.com/r/rosettacommons/rosetta,
+Accessible from the official Docker hub at <https://hub.docker.com/r/rosettacommons/rosetta>,
 the images have both Rosetta and PyRosetta pre-installed, such that Rosetta tutorials can be followed.
 You may also conveniently inspect the Dockerfiles
 (see [docker/README.md](https://github.com/RosettaCommons/rosetta/blob/main/docker/README.md))
@@ -47,7 +49,7 @@ Installing using Conda
 
 Rosetta binaries are avaliable as a `rosetta` Conda package in the **RosettaCommons Conda Channel**. All binaries are built using `serialization` and `cxx11thread` extras. Currently RosettaCommons has two mirrors of this channel. To use them please edit `~/.condarc` and add snippets for either East or West mirrors:
 
-Example `~/.condarc` for US WEST coast (if unsure use this mirror): 
+Example `~/.condarc` for US WEST coast (if unsure use this mirror):
 
 ```
 channels: 
@@ -63,9 +65,13 @@ channels:
 - conda-forge
 ```
 
-
 Compiling Rosetta
 -----------------
+
+> [!TIP]
+> **Recommended: Use WSL**
+> Rosetta's build system (`SCons`) is optimized for Linux/Unix environments. While compilation with MSVC is possible, it is complex to configure.
+> We strongly recommend using **WSL (Windows Subsystem for Linux)** to build Rosetta using standard GCC/Clang toolchains.
 
 To use Rosetta without Docker, or to modify and extend Rosetta yourself, you can compile the Rosetta source tree yourself.
 (See also <https://www.rosettacommons.org/docs/latest/build_documentation/Build-Documentation> for details.)
@@ -75,8 +81,8 @@ need to install the C++ compiler (g++ or clang). Also you need the scripting lan
 The compilation is then performed by:
 
 ``` sh
-$ cd source
-$ ./scons.py -j<NumOfJobs> mode=release bin
+cd source
+./scons.py -j<NumOfJobs> mode=release bin
 ```
 
 The Rosetta source tree is big and uses a series of advanced features of the C++ language.
@@ -87,9 +93,9 @@ Please let us know if you run into issues.
 Docker
 ======
 
-Official Rosetta/PyRosetta images could be found at https://hub.docker.com/r/rosettacommons/rosetta.
+Official Rosetta/PyRosetta images could be found at <https://hub.docker.com/r/rosettacommons/rosetta>.
 Both `serial` and `mpi` Rosetta builds provided as well as the number of PyRosetta builds including fully functional Jupyter setups with PyRosetta pre-installed and experimenta builds with `libtorch` and `tensorflow` integration.
-Please see https://hub.docker.com/r/rosettacommons/rosetta for more information.
+Please see <https://hub.docker.com/r/rosettacommons/rosetta> for more information.
 
 Various reference Docker files could be found in `rosetta/docker` dir.
 
@@ -103,16 +109,17 @@ See <https://www.pyrosetta.org> for more information about PyRosetta.
 The Docker image referenced above already ships with PyRosetta.
 To prepare the PyRosetta Python module locally from this source tree,
 you need
- * a C++ compiler, like the one you used to compile the other parts of Rosetta
- * the Ninja ([conda](https://anaconda.org/conda-forge/ninja), [Debian](https://tracker.debian.org/pkg/ninja-build)) build management tool
- * and also CMake ([conda](https://anaconda.org/conda-forge/cmake), [Debian](https://tracker.debian.org/pkg/cmake))
+
+* a C++ compiler, like the one you used to compile the other parts of Rosetta
+* the Ninja ([conda](https://anaconda.org/conda-forge/ninja), [Debian](https://tracker.debian.org/pkg/ninja-build)) build management tool
+* and also CMake ([conda](https://anaconda.org/conda-forge/cmake), [Debian](https://tracker.debian.org/pkg/cmake))
 which should all be readily available from your regular Linux distribution.
 
 ``` sh
-$ cd source/src/python/PyRosetta
-$ python3 build.py -j24 --create-package $HOME/my_pyrosetta_package
-$ cd $HOME/my_pyrosetta_package/setup
-$ python3 setup.py install
+cd source/src/python/PyRosetta
+python3 build.py -j24 --create-package $HOME/my_pyrosetta_package
+cd $HOME/my_pyrosetta_package/setup
+python3 setup.py install
 ```
 
 Developing Rosetta
@@ -131,6 +138,7 @@ Rosetta Code Organization
 Due to its size, Rosetta uses git submodules to help in organization.
 
 The main repository (RosettaCommons/rosetta) contains the Rosetta source code, database, unit test and integration tests
+
 * rosetta/source/src -- The Rosetta source
 * rosetta/database/ -- The Rosetta database (used during runtime)
 * rosetta/source/test/ -- The compiled unit tests
@@ -139,15 +147,16 @@ The main repository (RosettaCommons/rosetta) contains the Rosetta source code, d
 * rosetta/source/build/ -- The location of the built libraries -- (created during compilation)
 
 Additional information is located in submodules:
-* rosetta/documentation/ -- https://github.com/RosettaCommons/documentation -- Source for the online documentation
-* rosetta/demos/ -- https://github.com/RosettaCommons/demos -- Various demos on using Rosetta
-* rosetta/tools/ -- https://github.com/RosettaCommons/tools -- Additional helper scripts and protocols
-* rosetta/rosetta_scripts_scripts -- https://github.com/RosettaCommons/rosetta_scripts_scripts -- Example XML scripts for use with RosettaScripts
-* rosetta/pyrosetta_scripts -- https://github.com/RosettaCommons/pyrosetta_scripts -- Example PyRosetta scripts
-* rosetta/PyRosetta.notebooks -- https://github.com/RosettaCommons/PyRosetta.notebooks -- Example Jupyter notebooks using PyRosetta.
+
+* rosetta/documentation/ -- <https://github.com/RosettaCommons/documentation> -- Source for the online documentation
+* rosetta/demos/ -- <https://github.com/RosettaCommons/demos> -- Various demos on using Rosetta
+* rosetta/tools/ -- <https://github.com/RosettaCommons/tools> -- Additional helper scripts and protocols
+* rosetta/rosetta_scripts_scripts -- <https://github.com/RosettaCommons/rosetta_scripts_scripts> -- Example XML scripts for use with RosettaScripts
+* rosetta/pyrosetta_scripts -- <https://github.com/RosettaCommons/pyrosetta_scripts> -- Example PyRosetta scripts
+* rosetta/PyRosetta.notebooks -- <https://github.com/RosettaCommons/PyRosetta.notebooks> -- Example Jupyter notebooks using PyRosetta.
 * rosetta/source/external/... -- Various 'venderized' external dependencies
 
-The default clone does not pull down submodules, leaving an empty directory. 
+The default clone does not pull down submodules, leaving an empty directory.
 The compilation script will automatically clone the submodules needed for compilation, but not others.
 To obtain the contents of submodules which aren't currently cloned:
 
@@ -157,4 +166,3 @@ To obtain the contents of submodules which aren't currently cloned:
 or if you want to get all the submodules
 
     git submodule update --init --recursive
-
